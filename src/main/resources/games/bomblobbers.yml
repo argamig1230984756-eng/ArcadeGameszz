@@ -1,0 +1,17 @@
+# BombLobbers settings
+enabled: true
+default-min-players: 2
+default-max-players: 16
+round-seconds: 180
+
+# What happens when a player loses: SPECTATOR or LOBBY.
+elimination:
+  mode: SPECTATOR
+
+# Thrown TNT. Edit and run /arcade reload.
+tnt:
+  throw-strength: 1.25      # how hard the TNT is thrown forwards (higher = further). 0.6 = short lob, 2.0 = long throw
+  throw-lift: 0.45          # upward push of the throw (higher = higher arc)
+  fuse-ticks: 50            # 20 ticks = 1 second until it explodes
+  supply-interval-ticks: 160  # a player below supply-max TNT receives one TNT this often
+  supply-max: 3

@@ -240,18 +240,10 @@ public final class ArcadeModeGame extends Game {
         if (e.getHand() != org.bukkit.inventory.EquipmentSlot.HAND) return;
         if (e.getAction() != org.bukkit.event.block.Action.RIGHT_CLICK_AIR
                 && e.getAction() != org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK) return;
-        // In Splegg the iron shovel is the launcher; eggs are ammunition, not the item used to fire.
+        // In Splegg the iron shovel launches eggs; ammo is infinite.
         if (e.getItem() == null || e.getItem().getType() != Material.IRON_SHOVEL) return;
         e.setCancelled(true);
-        ItemStack ammo = null;
-        for (ItemStack stack : p.getInventory().getStorageContents()) {
-            if (stack != null && stack.getType() == Material.EGG && stack.getAmount() > 0) {
-                ammo = stack;
-                break;
-            }
-        }
-        if (ammo == null) return;
-        ammo.setAmount(ammo.getAmount() - 1);
+        // Infinite ammo: no eggs are needed in the inventory.
         Egg egg = p.launchProjectile(Egg.class);
         egg.setVelocity(p.getLocation().getDirection().multiply(1.6));
         egg.addScoreboardTag("ag_splegg");
